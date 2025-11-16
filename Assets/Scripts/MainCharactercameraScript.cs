@@ -13,6 +13,13 @@ public class MainCharactercameraScript : MonoBehaviour
     private float yaw;                // Horizontal rotation
     private float pitch;              // Vertical rotation
 
+    void Start()
+    {
+        // Hide and lock the cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void LateUpdate()
     {
         if (!player) return;
