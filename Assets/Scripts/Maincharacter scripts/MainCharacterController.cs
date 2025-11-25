@@ -14,7 +14,7 @@ public class MainCharacterController : MonoBehaviour
     private float lastDodgeTime;
 
     [Header("Attack")]
-    public Animator animator; // Assign your character's Animator in Inspector
+    public Animator animator; // Assign character's Animator in Inspector
 
     public float lightAttackCooldown = 0.5f;
     public float heavyAttackCooldown = 1.0f;
@@ -39,7 +39,6 @@ public class MainCharacterController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("isWalking: " + animator.GetBool("isWalking"));
         HandleMovement();
         ApplyGravity();
         HandleDodge();

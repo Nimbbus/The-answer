@@ -220,7 +220,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -466,6 +466,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8c32717719c37b742b028efc4fe64d6b, type: 2}
+    - target: {fileID: 8662078668650378284, guid: db0ed9acc3a0cba4da434704233f0af1, type: 3}
+      propertyPath: dodgeDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662078668650378284, guid: db0ed9acc3a0cba4da434704233f0af1, type: 3}
+      propertyPath: heavyAttackCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662078668650378284, guid: db0ed9acc3a0cba4da434704233f0af1, type: 3}
+      propertyPath: lightAttackCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
