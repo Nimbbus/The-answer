@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/oldManMeeting 2/OldManMeetingFinal.unity
     guid: 596c2efa5819cf94b9f775e42cca1a9f
+  - enabled: 1
+    path: Assets/Scenes/Main menu/MainMenu.unity
+    guid: 653b89a441c2f04479b9d8ac9951777a
   m_configObjects: {}
