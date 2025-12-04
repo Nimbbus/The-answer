@@ -1748,6 +1748,107 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 858e79faf6de940498a11b25374053d0, type: 3}
+--- !u!1001 &142743317
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 317881958423762781, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420534537090827776, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439499043622515340, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+      propertyPath: m_Name
+      value: DialogueCanvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
 --- !u!1001 &146806473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9787,6 +9888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch05_nonPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 208009971450904985, guid: db0ed9acc3a0cba4da434704233f0af1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 696139685573057315, guid: db0ed9acc3a0cba4da434704233f0af1, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1
@@ -11824,6 +11929,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 858e79faf6de940498a11b25374053d0, type: 3}
+--- !u!1 &1308599631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 317881958423762781, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+  m_PrefabInstance: {fileID: 142743317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1309223571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13751,6 +13861,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1255053967005034564, guid: 2367bf03da674184783a4254456143c7, type: 3}
   m_PrefabInstance: {fileID: 752155768}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1500946371 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8182674465915168359, guid: aabe5c3acbe0822499efa5804f1c7c53, type: 3}
+  m_PrefabInstance: {fileID: 142743317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1510085290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81e000f97bc0cfe4c967f83b5aa5bc79, type: 3}
@@ -17883,6 +18004,102 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1781949194303238865, guid: e92a0207ed6f749459a3646c2aaf3cd9, type: 3}
   m_PrefabInstance: {fileID: 228807109}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2014147766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014147768}
+  - component: {fileID: 2014147767}
+  - component: {fileID: 2014147769}
+  m_Layer: 0
+  m_Name: BossTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2014147767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014147766}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.87, y: 3.1, z: 2.26}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &2014147768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014147766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.48, z: -6.25}
+  m_LocalScale: {x: 17.454, y: 1, z: 1.6102}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014147769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014147766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e334c5a5dee7ebf4bb00e7429321183d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1308599631}
+  dialogueLines:
+  - 'Stranger: Welcome BOY!!! I have been waiting for you...'
+  - 'Traveler: a a.. and who are you supposed to be?'
+  - 'Rage: I am one of your many ancestors my name is Rage, I heard the news that
+    you are looking for The Answer..'
+  - 'Traveler: yes I am looking for my purpose in life so how can I get The Answer?'
+  - 'Rage: First let me tell you my story from when I was well and alive..'
+  - 'Rage: I was born at a time where being poor was all what people knew, no one
+    knew the taste of food, food was so rare to come accross that we started eating
+    bugs to survive..'
+  - 'Rage: I grew up in a loving family, or at least so I thought, we were taught
+    since being born that all we have is each other and no matter what we always
+    have each others back..'
+  - 'Rage: until one day my mom heard of a kind who ruled the world he was promising
+    a wealthy happy life to whoever has the heart to sacrifice their kid to be a
+    worker at his mansion...'
+  - 'Rage: and for the first time since I saw the light, I looked into my mom eyes
+    and they were lit up with hope, she looked at me and without hesitation she told
+    me: Finally, Finally there will be a use of you...'
+  - 'Rage: I wasn''t hurt from it I was just angry I was furious, I was angry at
+    the world for not having enough resources for humans, I was angry at the king
+    who was separating families and taking advantage of the world...'
+  - 'Rage: and the person i was the most angry at is me my self because if i was
+    just strong enough i could have ended that king kingdom and set free the millions
+    of people he was enslaving...'
+  - 'Rage: and now for you to find your Answer you will have to defeat me and face
+    the Rage of a thousand years!'
+  - 'Traveler: I would do anything to get The Answer so: BRING IT ON RAGE!!!'
+  dialogueText: {fileID: 1500946371}
 --- !u!4 &2021578761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8295591563862043288, guid: 98c5ce036f68d8941922e7541fb70887, type: 3}
@@ -47897,3 +48114,5 @@ SceneRoots:
   - {fileID: 1021048659}
   - {fileID: 641091026}
   - {fileID: 402202477}
+  - {fileID: 2014147768}
+  - {fileID: 142743317}
