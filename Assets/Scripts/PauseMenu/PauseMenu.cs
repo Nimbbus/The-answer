@@ -1,36 +1,44 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Toggle pause with Escape or P
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
             TogglePause();
+        }
+
+        // Optional: reset UI selection to avoid stale focus
+        if (isPaused)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
     public void TogglePause()
     {
-        isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
-
         if (isPaused)
         {
-            Time.timeScale = 0f;
-            Cursor.lockState = CursorLockMode.None; // Unlock cursor
-            Cursor.visible = true;                  // Show cursor
+            ResumeGame();
         }
         else
         {
-            Time.timeScale = 1f;
-            Cursor.lockState = CursorLockMode.Locked; // Lock cursor back to center
-            Cursor.visible = false;                   // Hide cursor
+            PauseGame();
         }
+    }
+
+    private void PauseGame()
+    {
+        isPaused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ResumeGame()
@@ -38,22 +46,18 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     public void GoToMainMenu()
     {
+        isPaused = false;
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()
     {
+        Time.timeScale = 1f;
         Application.Quit();
     }
 }
-
-

@@ -6,6 +6,11 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject aboutPanel;
 
+    void Start()
+    {
+       
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("OldManMeeting"); // Replace with your actual scene name

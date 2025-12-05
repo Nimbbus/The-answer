@@ -13,8 +13,6 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         if (isDialogueActive && Input.GetKeyDown(KeyCode.E))
         {
             NextLine();
@@ -41,10 +39,6 @@ public class DialogueManager : MonoBehaviour
         {
             Time.timeScale = 0f;
         }
-
-        // ✅ Cursor always hidden during dialogue
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void ShowLine()
@@ -77,9 +71,5 @@ public class DialogueManager : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-
-        // ✅ Cursor stays hidden after dialogue ends
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

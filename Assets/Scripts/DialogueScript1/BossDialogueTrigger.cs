@@ -8,7 +8,7 @@ public class BossDialogueTrigger : MonoBehaviour
 
     private int currentLine = 0;
     private bool isDialogueActive = false;
-    private bool hasPlayed = false; 
+    private bool hasPlayed = false;
 
     void OnTriggerEnter(Collider other)
     {
@@ -32,8 +32,6 @@ public class BossDialogueTrigger : MonoBehaviour
         hasPlayed = true; // Prevent retrigger
         dialoguePanel.SetActive(true);
         Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
         currentLine = 0;
         dialogueText.text = dialogueLines[currentLine];
@@ -57,9 +55,5 @@ public class BossDialogueTrigger : MonoBehaviour
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        
     }
 }

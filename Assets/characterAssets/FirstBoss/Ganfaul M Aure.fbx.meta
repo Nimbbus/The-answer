@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a2e3053881d475408bd8277724828fc
+guid: 8ae6c0f4683bb0040a75c20691982726
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,23 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Paladin_MAT
-    second: {fileID: 2100000, guid: 27326bc049795094db14047b0c26680d, type: 2}
+      name: Ganfaul_Body
+    second: {fileID: 2100000, guid: 5d559a7fcf2e4bb468f7f26781f73dfe, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Paladin_diffuse
-    second: {fileID: 2800000, guid: e764555ff42932f4394dbe04f47a7da4, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Paladin_normal
-    second: {fileID: 2800000, guid: 9966d6500dd8ff545bfbb2fcf572b52c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Paladin_specular
-    second: {fileID: 2800000, guid: fe8b96e77ce32bc4da62323a3acdac37, type: 3}
+      name: Ganfaul_diffuse
+    second: {fileID: 2800000, guid: 2fc70579c684ddc49a37a114e60900e1, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
