@@ -42,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        IsPlayerDead = true; // ✅ mark player as dead
+        Debug.Log("Player died!");
         isDead = true;
         Debug.Log("Player died!");
 
