@@ -3,12 +3,14 @@ using UnityEngine.AI;
 
 public class RageAI : MonoBehaviour
 {
-    public Transform player;          // Assign the player in Inspector
-    public float attackRange = 2f;    // Distance at which boss attacks
-    public float attackCooldown = 3f; // Idle time between attacks
-    public float attackDuration = 1f; // Length of attack animation
-    public float rotationSpeed = 5f;  // Speed at which boss rotates to face player
-    public int attackDamage = 10;     // Damage dealt to player per hit
+    [Header("References")]
+    public Transform player;
+    public Collider weaponCollider;
+
+    [Header("Attack Settings")]
+    public float attackRange = 2f;
+    public float attackCooldown = 3f;
+    public float rotationSpeed = 5f;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -18,35 +20,50 @@ public class RageAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        if (weaponCollider != null)
+        {
+            weaponCollider.isTrigger = true;
+            weaponCollider.enabled = false;
+        }
     }
 
     void Update()
     {
+        // ✅ Stop all AI actions if player is dead
+        if (PlayerHealth.IsPlayerDead)
+        {
+            if (agent.isOnNavMesh) agent.isStopped = true;
+
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isAttacking", false);
+
+            isAttacking = false;
+            if (weaponCollider != null) weaponCollider.enabled = false;
+
+            return;
+        }
+
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance > attackRange && !isAttacking)
         {
-            // ✅ Chase player
             if (agent.isOnNavMesh)
             {
                 agent.isStopped = false;
                 agent.SetDestination(player.position);
             }
 
-            FacePlayerSmooth(); // Rotate toward player while chasing
+            FacePlayerSmooth();
 
             animator.SetBool("isWalking", true);
             animator.SetBool("isAttacking", false);
         }
         else
         {
-            // ✅ Attack logic
             if (!isAttacking)
             {
-                if (agent.isOnNavMesh)
-                {
-                    agent.isStopped = true;
-                }
+                if (agent.isOnNavMesh) agent.isStopped = true;
 
                 animator.SetBool("isWalking", false);
                 StartCoroutine(AttackRoutine());
@@ -56,32 +73,51 @@ public class RageAI : MonoBehaviour
 
     private System.Collections.IEnumerator AttackRoutine()
     {
+        if (PlayerHealth.IsPlayerDead) yield break;
+
         isAttacking = true;
 
-        // ✅ Snap to face player before attack
         FacePlayerInstant();
-
         animator.SetBool("isAttacking", true);
 
-        yield return new WaitForSeconds(attackDuration);
+        float elapsed = 0f;
+        while (elapsed < attackCooldown)
+        {
+            if (PlayerHealth.IsPlayerDead)
+            {
+                animator.SetBool("isAttacking", false);
+                isAttacking = false;
+                if (weaponCollider != null) weaponCollider.enabled = false;
+                yield break;
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         animator.SetBool("isAttacking", false);
-
-        yield return new WaitForSeconds(attackCooldown);
-
         isAttacking = false;
     }
 
-    // ✅ Called via Animation Event at the moment of impact
-    public void DealDamage()
+    public void EnableWeaponCollider()
     {
-        if (player != null)
+        if (weaponCollider != null && !PlayerHealth.IsPlayerDead)
         {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackDamage);
-            }
+            weaponCollider.enabled = true;
+
+            WeaponHit hitScript = weaponCollider.GetComponent<WeaponHit>();
+            if (hitScript != null) hitScript.ResetHit();
+
+            Debug.Log("Weapon collider enabled (via Animation Event).");
+        }
+    }
+
+    public void DisableWeaponCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false;
+            Debug.Log("Weapon collider disabled (via Animation Event).");
         }
     }
 
