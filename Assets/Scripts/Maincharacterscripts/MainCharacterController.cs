@@ -26,6 +26,7 @@ public class MainCharacterController : MonoBehaviour
     public float lightAttackLockDuration = 0.6f;
 
     [Tooltip("Lock duration for heavy attack animation (seconds)")]
+    public float heavyAttackLockDuration = 1.0f;
 
     private float lastLightAttackTime;
     private float lastHeavyAttackTime;
