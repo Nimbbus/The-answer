@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
@@ -16,8 +16,16 @@ public class MainCharacterController : MonoBehaviour
     [Header("Attack")]
     public Animator animator; // Assign character's Animator in Inspector
 
-    public float lightAttackCooldown = 0.5f;
-    public float heavyAttackCooldown = 1.0f;
+    [Tooltip("Cooldown between light attacks (seconds)")]
+    public float lightAttackCooldown = 1.5f;
+
+    [Tooltip("Cooldown between heavy attacks (seconds)")]
+    public float heavyAttackCooldown = 2.0f;
+
+    [Tooltip("Lock duration for light attack animation (seconds)")]
+    public float lightAttackLockDuration = 0.6f;
+
+    [Tooltip("Lock duration for heavy attack animation (seconds)")]
 
     private float lastLightAttackTime;
     private float lastHeavyAttackTime;
@@ -33,7 +41,6 @@ public class MainCharacterController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Auto-assign Animator if not set
         if (!animator) animator = GetComponent<Animator>();
     }
 
@@ -47,7 +54,7 @@ public class MainCharacterController : MonoBehaviour
 
     void HandleMovement()
     {
-        if (isAttacking) return; // Lock movement during attack/dodge
+        if (isAttacking) return;
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -93,11 +100,11 @@ public class MainCharacterController : MonoBehaviour
     IEnumerator PerformDodge()
     {
         lastDodgeTime = Time.time;
-        isAttacking = true; // lock movement during dodge
+        isAttacking = true;
 
         if (animator) animator.SetTrigger("Dodge");
 
-        float dodgeDuration = 0.3f; // match animation length
+        float dodgeDuration = 0.3f;
         float elapsed = 0f;
         Vector3 dodgeDir = transform.forward;
 
@@ -113,32 +120,30 @@ public class MainCharacterController : MonoBehaviour
 
     void HandleAttack()
     {
-        // Light Attack (Left Click)
+        // Light Attack
         if (Input.GetMouseButtonDown(0) && Time.time > lastLightAttackTime + lightAttackCooldown && !isAttacking)
         {
-            StartCoroutine(PerformAttack("LightAttack", lightAttackCooldown));
+            StartCoroutine(PerformAttack("LightAttack", lightAttackLockDuration));
+            lastLightAttackTime = Time.time; // ✅ cooldown tracked separately
         }
 
-        // Heavy Attack (Right Click)
+        // Heavy Attack
         if (Input.GetMouseButtonDown(1) && Time.time > lastHeavyAttackTime + heavyAttackCooldown && !isAttacking)
         {
-            StartCoroutine(PerformAttack("HeavyAttack", heavyAttackCooldown));
+            StartCoroutine(PerformAttack("HeavyAttack", heavyAttackLockDuration));
+            lastHeavyAttackTime = Time.time;
         }
     }
 
-    IEnumerator PerformAttack(string attackTrigger, float cooldown)
+    IEnumerator PerformAttack(string attackTrigger, float lockDuration)
     {
         isAttacking = true;
 
-        if (attackTrigger == "LightAttack")
-            lastLightAttackTime = Time.time;
-        else if (attackTrigger == "HeavyAttack")
-            lastHeavyAttackTime = Time.time;
-
         if (animator) animator.SetTrigger(attackTrigger);
 
-        // Lock movement for duration of animation
-        yield return new WaitForSeconds(cooldown);
+        // Lock movement only for animation length
+        yield return new WaitForSeconds(lockDuration);
+
         isAttacking = false;
     }
 }

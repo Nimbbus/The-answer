@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI; // Needed if boss uses NavMeshAgent
+using System.Collections; // Needed for coroutines
 
 public class BossHealth : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class BossHealth : MonoBehaviour
 
     private Animator animator;
     private bool isDead = false;
+
+    [Header("Dialogue Settings")]
+    [Tooltip("Lines of dialogue the boss will speak after dying.")]
+    public string[] bossDeathDialogue; // assign these lines in the Inspector
+
+    [Header("Rock Settings")]
+    [Tooltip("Rocks blocking the portal that should disappear when boss dies.")]
+    public GameObject[] blockingRocks; // assign both rocks in Inspector
 
     void Start()
     {
@@ -25,7 +34,6 @@ public class BossHealth : MonoBehaviour
 
         if (CurrentHealth > 0)
         {
-            // ✅ Flinch animation while alive
             if (animator != null)
             {
                 animator.SetTrigger("GotHit");
@@ -44,23 +52,56 @@ public class BossHealth : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetTrigger("Die"); // ✅ plays death animation
+            animator.SetTrigger("Die");
         }
 
-        // Disable AI logic so boss stops moving/attacking
+        // Disable AI logic
         RageAI ai = GetComponent<RageAI>();
         if (ai != null) ai.enabled = false;
 
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         if (agent != null) agent.enabled = false;
 
-        // ✅ Disable combat collider safely
+        // Disable combat collider
         Collider col = GetComponent<Collider>();
-        if (col != null)
-        {
-            col.enabled = false;
-        }
+        if (col != null) col.enabled = false;
 
-    
+        // Trigger dialogue with delay
+        StartCoroutine(ShowDialogueAfterDelay(3f));
+
+        // ✅ Delay rock removal by 3 seconds
+        StartCoroutine(RemoveRocksAfterDelay(4f));
+    }
+
+    private IEnumerator ShowDialogueAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        DialogueManager dm = FindObjectOfType<DialogueManager>();
+        if (dm != null && bossDeathDialogue != null && bossDeathDialogue.Length > 0)
+        {
+            dm.StartDialogue(bossDeathDialogue);
+        }
+    }
+
+    private IEnumerator RemoveRocksAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        RemoveBlockingRocks();
+    }
+
+    private void RemoveBlockingRocks()
+    {
+        if (blockingRocks != null && blockingRocks.Length > 0)
+        {
+            foreach (GameObject rock in blockingRocks)
+            {
+                if (rock != null)
+                {
+                    rock.SetActive(false);
+                }
+            }
+            Debug.Log("Blocking rocks removed!");
+        }
     }
 }

@@ -4,8 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("UI References")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
+
+    [Header("Dialogue Data")]
     public string[] dialogueLines;
     public int currentLine = 0;
 
@@ -34,14 +37,14 @@ public class DialogueManager : MonoBehaviour
         currentLine = 0;
         ShowLine();
 
-        // ✅ Pause only if not in Old Man scene
+        // ✅ Pause gameplay unless in Old Man scene
         if (SceneManager.GetActiveScene().name != "OldManMeeting")
         {
             Time.timeScale = 0f;
         }
     }
 
-    void ShowLine()
+    private void ShowLine()
     {
         if (currentLine < dialogueLines.Length)
         {
