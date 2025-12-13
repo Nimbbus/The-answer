@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2634317550568746512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1222949707342046193}
+  - component: {fileID: 6330119937253831886}
+  - component: {fileID: 3701291283526916286}
+  m_Layer: 0
+  m_Name: BossDialogueTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1222949707342046193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634317550568746512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.48, z: -8.15}
+  m_LocalScale: {x: 17.454, y: 1, z: 1.6102}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6330119937253831886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634317550568746512}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.87, y: 3.1, z: 2.26}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3701291283526916286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634317550568746512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e334c5a5dee7ebf4bb00e7429321183d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 0}
+  dialogueLines:
+  - 'Stranger: Welcome BOY!!! I have been waiting for you...'
+  - 'Traveler: a a.. and who are you supposed to be?'
+  - 'Rage: I am one of your many ancestors my name is Rage, I heard the news that
+    you are looking for The Answer..'
+  - 'Traveler: yes I am looking for my purpose in life so how can I get The Answer?'
+  - 'Rage: First let me tell you my story from when I was well and alive..'
+  - 'Rage: I was born at a time where being poor was all what people knew, no one
+    knew the taste of food, food was so rare to come accross that we started eating
+    bugs to survive..'
+  - 'Rage: I grew up in a loving family, or at least so I thought, we were taught
+    since being born that all we have is each other and no matter what we always
+    have each others back..'
+  - 'Rage: until one day my mom heard of a king who ruled the world, he was promising
+    a wealthy happy life to whoever has the heart to sacrifice their kid to be a
+    worker at his mansion...'
+  - 'Rage: and for the first time since I saw the light, I looked into my mom eyes
+    and they were lit up with hope, she looked at me and without hesitation she told
+    me: Finally, Finally there will be a use of you...'
+  - 'Rage: I wasn''t hurt from it I was just angry I was furious, I was angry at
+    the world for not having enough resources for humans, I was angry at the king
+    who was separating families and taking advantage of the world...'
+  - 'Rage: and the person i was the most angry at is me my self because if i was
+    just strong enough i could have ended that king kingdom and set free the millions
+    of people he was enslaving...'
+  - 'Rage: and now for you to find your Answer you will have to defeat me and face
+    the Rage of a thousand years!'
+  - 'Traveler: I would do anything to get The Answer so: BRING IT ON RAGE!!!'
+  dialogueText: {fileID: 0}
