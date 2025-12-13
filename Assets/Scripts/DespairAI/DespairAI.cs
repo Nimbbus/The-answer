@@ -13,7 +13,7 @@ public class DespairAI : MonoBehaviour
     public float stopDistance = 4.5f;
 
     [Header("Timing")]
-    public float attackCooldown = 2f;
+    public float attackCooldown = 2f; // cooldown between attack cycles
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -70,11 +70,17 @@ public class DespairAI : MonoBehaviour
         agent.isStopped = true;
         animator.SetBool("isWalking", false);
 
+        // Speed up animations during attacks
+        animator.speed = 2.0f; // double speed
+
         animator.SetTrigger("FirstAttack");
-        yield return AttackMove(1.0f);
+        yield return AttackMove(0.5f); // faster duration
 
         animator.SetTrigger("SecAttack");
-        yield return AttackMove(1.0f);
+        yield return AttackMove(0.5f);
+
+        // Reset speed back to normal
+        animator.speed = 1.0f;
 
         isAttacking = false;
         agent.isStopped = false;
