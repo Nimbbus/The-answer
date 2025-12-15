@@ -837,37 +837,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
   m_PrefabInstance: {fileID: 1648019086}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &92264527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92264520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cd3a8f6a56654c49bb733b990bda37c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTag: Player
-  maxHealth: 500
-  currentHealth: 500
-  damageAmount: 0
-  animator: {fileID: 92264525}
---- !u!114 &92264528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92264520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c1eb643d9aa0d489b2d8698a5a3e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  targetTag: Player
 --- !u!65 &92264529
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -885,7 +854,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: -0.49, y: 1.02, z: 0.18}
@@ -906,7 +875,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0.59, y: 1, z: 0.14}
@@ -937,6 +906,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &92264533
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92264520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.14, z: 0}
+--- !u!114 &92264534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92264520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd43182b02e9114aad0cc6ed44d5154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
+  currentHealth: 500
+  animator: {fileID: 92264525}
 --- !u!1 &94604780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,8 +2964,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.3, z: 0.3}
+  m_Size: {x: 0.52, y: 0.48, z: 0.54}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &250642637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250642633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4802d7d7d474bc14db372e3026c77ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  hitCooldown: 0.5
 --- !u!1 &252927023
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,7 +3780,7 @@ GameObject:
   - component: {fileID: 362592547}
   - component: {fileID: 362592546}
   m_Layer: 5
-  m_Name: DespairHealthText
+  m_Name: BossText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3881,6 +3902,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362592544}
   m_CullTransparentMesh: 1
+--- !u!1 &374811075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9037608987313552732, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+  m_PrefabInstance: {fileID: 1339663688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &374811082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374811075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1878429b5891bb41a61da1a39e9e5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  hitCooldown: 0.3
 --- !u!1 &375886107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4023,8 +4063,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.31, z: 0.37}
+  m_Size: {x: 0.46, y: 0.39, z: 0.49}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &405290970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405290966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4802d7d7d474bc14db372e3026c77ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  hitCooldown: 0.5
 --- !u!1 &447710760
 GameObject:
   m_ObjectHideFlags: 0
@@ -35289,7 +35343,7 @@ GameObject:
   - component: {fileID: 825797697}
   - component: {fileID: 825797698}
   m_Layer: 5
-  m_Name: TravelerHealthBar
+  m_Name: PlayerSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37641,8 +37695,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7008546209036079246, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1896114621}
+      insertIndex: 2
+      addedObject: {fileID: 1896114628}
+    - targetCorrespondingSourceObject: {fileID: 9037608987313552732, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 374811082}
   m_SourcePrefab: {fileID: 100100000, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
 --- !u!1001 &1349473471
 PrefabInstance:
@@ -39241,13 +39298,10 @@ PrefabInstance:
       addedObject: {fileID: 92264523}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 92264528}
+      addedObject: {fileID: 92264534}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 92264524}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 92264527}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 92264531}
@@ -39257,12 +39311,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 92264529}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 92264533}
     - targetCorrespondingSourceObject: {fileID: -6218120960370098191, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 250642635}
+    - targetCorrespondingSourceObject: {fileID: -6218120960370098191, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 250642637}
     - targetCorrespondingSourceObject: {fileID: 1781078629098999389, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 405290968}
+    - targetCorrespondingSourceObject: {fileID: 1781078629098999389, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 405290970}
   m_SourcePrefab: {fileID: 100100000, guid: 0deeedb6d2b730143bd9226333c2078d, type: 3}
 --- !u!1 &1668252839
 GameObject:
@@ -40213,7 +40276,7 @@ GameObject:
   - component: {fileID: 1822819697}
   - component: {fileID: 1822819696}
   m_Layer: 5
-  m_Name: TravelerHealthText
+  m_Name: PlayerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40523,13 +40586,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838133920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02893b4a34863a14b98c44fb7c39717b, type: 3}
+  m_Script: {fileID: 11500000, guid: b502fe9cb27a9a945881b2ca2d1e481a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  travellerHealthBar: {fileID: 825797698}
-  bossHealthBar: {fileID: 2137485204}
-  travellerHealth: {fileID: 1896114621}
-  bossHealth: {fileID: 92264527}
+  healthCanvas: {fileID: 1838133920}
+  playerHealth: {fileID: 1896114628}
+  bossHealth: {fileID: 92264534}
 --- !u!1 &1854548854
 GameObject:
   m_ObjectHideFlags: 0
@@ -40834,7 +40896,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4388942404272263246, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
   m_PrefabInstance: {fileID: 1339663688}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1896114621
+--- !u!114 &1896114628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40843,13 +40905,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070325644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cd3a8f6a56654c49bb733b990bda37c, type: 3}
+  m_Script: {fileID: 11500000, guid: ecd43182b02e9114aad0cc6ed44d5154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Boss
   maxHealth: 200
   currentHealth: 200
-  damageAmount: 0
   animator: {fileID: 1896114620}
 --- !u!1 &1904692680
 GameObject:
@@ -41924,7 +41984,7 @@ GameObject:
   - component: {fileID: 2137485203}
   - component: {fileID: 2137485204}
   m_Layer: 5
-  m_Name: BossHealthBar
+  m_Name: BossSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
