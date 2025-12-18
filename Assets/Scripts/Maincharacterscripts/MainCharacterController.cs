@@ -14,18 +14,11 @@ public class MainCharacterController : MonoBehaviour
     private float lastDodgeTime;
 
     [Header("Attack")]
-    public Animator animator; // Assign character's Animator in Inspector
+    public Animator animator;
 
-    [Tooltip("Cooldown between light attacks (seconds)")]
     public float lightAttackCooldown = 1.5f;
-
-    [Tooltip("Cooldown between heavy attacks (seconds)")]
-    public float heavyAttackCooldown = 2.0f;
-
-    [Tooltip("Lock duration for light attack animation (seconds)")]
+    public float heavyAttackCooldown = 1.7f;
     public float lightAttackLockDuration = 0.6f;
-
-    [Tooltip("Lock duration for heavy attack animation (seconds)")]
     public float heavyAttackLockDuration = 1.0f;
 
     private float lastLightAttackTime;
@@ -35,6 +28,8 @@ public class MainCharacterController : MonoBehaviour
     private CharacterController controller;
     private float verticalVelocity;
     public float gravity = -9.81f;
+
+    public bool isDead = false; // flag set by DespairSceneHealth on death
 
     void Start()
     {
@@ -47,6 +42,8 @@ public class MainCharacterController : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return; // stop all input if dead
+
         HandleMovement();
         ApplyGravity();
         HandleDodge();
@@ -77,6 +74,8 @@ public class MainCharacterController : MonoBehaviour
 
     void ApplyGravity()
     {
+        if (isDead) return; // prevent gravity after death
+
         if (!controller.isGrounded)
         {
             verticalVelocity += gravity * Time.deltaTime;
@@ -100,6 +99,8 @@ public class MainCharacterController : MonoBehaviour
 
     IEnumerator PerformDodge()
     {
+        if (isDead) yield break; // prevent dodge if dead
+
         lastDodgeTime = Time.time;
         isAttacking = true;
 
@@ -111,21 +112,25 @@ public class MainCharacterController : MonoBehaviour
 
         while (elapsed < dodgeDuration)
         {
+            if (isDead) yield break; // stop mid‑dodge if dead
+
             controller.Move(dodgeDir * (dodgeDistance / dodgeDuration) * Time.deltaTime);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        isAttacking = false;
+        if (!isDead) isAttacking = false;
     }
 
     void HandleAttack()
     {
+        if (isDead) return; // prevent attacks after death
+
         // Light Attack
         if (Input.GetMouseButtonDown(0) && Time.time > lastLightAttackTime + lightAttackCooldown && !isAttacking)
         {
             StartCoroutine(PerformAttack("LightAttack", lightAttackLockDuration));
-            lastLightAttackTime = Time.time; // ✅ cooldown tracked separately
+            lastLightAttackTime = Time.time;
         }
 
         // Heavy Attack
@@ -138,13 +143,13 @@ public class MainCharacterController : MonoBehaviour
 
     IEnumerator PerformAttack(string attackTrigger, float lockDuration)
     {
-        isAttacking = true;
+        if (isDead) yield break; // prevent attack if dead
 
+        isAttacking = true;
         if (animator) animator.SetTrigger(attackTrigger);
 
-        // Lock movement only for animation length
         yield return new WaitForSeconds(lockDuration);
 
-        isAttacking = false;
+        if (!isDead) isAttacking = false;
     }
 }

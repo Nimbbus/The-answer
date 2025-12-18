@@ -24,22 +24,16 @@ public class BossWeaponHitDespair : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called by animation event at the start of the swing.
-    /// </summary>
     public void EnableWeaponCollider()
     {
         if (weaponCollider != null)
         {
             weaponCollider.enabled = true;
-            lastHitTime = -999f; // reset cooldown
+            lastHitTime = -999f;
             Debug.Log($"{gameObject.name}: Weapon collider enabled.");
         }
     }
 
-    /// <summary>
-    /// Called by animation event at the end of the swing.
-    /// </summary>
     public void DisableWeaponCollider()
     {
         if (weaponCollider != null)
@@ -60,7 +54,6 @@ public class BossWeaponHitDespair : MonoBehaviour
             return;
         }
 
-        // Directly damage the player's health script
         DespairSceneHealth playerHealth = other.GetComponent<DespairSceneHealth>();
         if (playerHealth != null)
         {

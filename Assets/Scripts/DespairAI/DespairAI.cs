@@ -13,13 +13,15 @@ public class DespairAI : MonoBehaviour
     public float stopDistance = 4.5f;
 
     [Header("Timing")]
-    public float attackCooldown = 2f; // cooldown between attack cycles
+    public float attackCooldown = 2f;
+    public float hitRecoveryTime = 2f;
 
     private NavMeshAgent agent;
     private Animator animator;
     private bool isAttacking;
     private bool isDead;
     private bool isOnCooldown;
+    private bool isRecovering;
 
     void Start()
     {
@@ -30,7 +32,7 @@ public class DespairAI : MonoBehaviour
 
     void Update()
     {
-        if (player == null || isDead) return;
+        if (player == null || isDead || isRecovering) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
 
@@ -59,6 +61,7 @@ public class DespairAI : MonoBehaviour
 
     void ChasePlayer()
     {
+        if (isDead) return;
         agent.isStopped = false;
         agent.SetDestination(player.position);
         animator.SetBool("isWalking", true);
@@ -66,25 +69,29 @@ public class DespairAI : MonoBehaviour
 
     IEnumerator AttackOnce()
     {
+        if (isRecovering || isDead) yield break;
+
         isAttacking = true;
         agent.isStopped = true;
         animator.SetBool("isWalking", false);
-
-        // Speed up animations during attacks
-        animator.speed = 2.0f; // double speed
+        animator.speed = 2.0f;
 
         animator.SetTrigger("FirstAttack");
-        yield return AttackMove(0.5f); // faster duration
+        yield return AttackMove(0.5f);
+
+        if (isRecovering || isDead) yield break;
 
         animator.SetTrigger("SecAttack");
         yield return AttackMove(0.5f);
 
-        // Reset speed back to normal
         animator.speed = 1.0f;
-
         isAttacking = false;
-        agent.isStopped = false;
-        animator.SetTrigger("ResumeChase");
+
+        if (!isDead)
+        {
+            agent.isStopped = false;
+            animator.SetTrigger("ResumeChase");
+        }
 
         isOnCooldown = true;
         yield return new WaitForSeconds(attackCooldown);
@@ -96,6 +103,8 @@ public class DespairAI : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
+            if (isRecovering || isDead) yield break;
+
             FacePlayer();
 
             float dist = Vector3.Distance(transform.position, player.position);
@@ -112,6 +121,7 @@ public class DespairAI : MonoBehaviour
 
     void FacePlayer()
     {
+        if (isDead) return;
         Vector3 direction = (player.position - transform.position).normalized;
         direction.y = 0;
         if (direction.magnitude > 0.1f)
@@ -123,16 +133,46 @@ public class DespairAI : MonoBehaviour
 
     public void OnHit()
     {
+        if (isDead) return;
+
         animator.SetTrigger("GettingHit");
+        StopAllCoroutines();
+
         isAttacking = false;
-        agent.isStopped = false;
-        animator.SetTrigger("ResumeChase");
+        isOnCooldown = false;
+        agent.isStopped = true;
+
+        if (!isRecovering)
+        {
+            StartCoroutine(RecoverAfterHit());
+        }
+    }
+
+    IEnumerator RecoverAfterHit()
+    {
+        isRecovering = true;
+        yield return new WaitForSeconds(hitRecoveryTime);
+        isRecovering = false;
+
+        if (!isDead)
+        {
+            agent.isStopped = false;
+            animator.SetTrigger("ResumeChase");
+        }
     }
 
     public void OnDeath()
     {
+        if (isDead) return;
         isDead = true;
-        agent.isStopped = true;
+
+        if (agent != null)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+            agent.enabled = false;
+        }
+
         animator.SetTrigger("Die");
         animator.SetBool("isWalking", false);
     }
