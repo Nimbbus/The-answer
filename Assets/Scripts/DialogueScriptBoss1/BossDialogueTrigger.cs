@@ -1,10 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class BossDialogueTrigger : MonoBehaviour
 {
     public GameObject dialoguePanel;
     public string[] dialogueLines;
-    public TMPro.TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI dialogueText;
+    public float typingSpeed = 0.03f; // ✅ adjustable typing speed
 
     private int currentLine = 0;
     private bool isDialogueActive = false;
@@ -29,12 +32,12 @@ public class BossDialogueTrigger : MonoBehaviour
     void StartDialogue()
     {
         isDialogueActive = true;
-        hasPlayed = true; // Prevent retrigger
+        hasPlayed = true; // ✅ Prevent retrigger
         dialoguePanel.SetActive(true);
         Time.timeScale = 0f;
 
         currentLine = 0;
-        dialogueText.text = dialogueLines[currentLine];
+        DisplayLine(dialogueLines[currentLine]);
     }
 
     void NextLine()
@@ -42,11 +45,28 @@ public class BossDialogueTrigger : MonoBehaviour
         currentLine++;
         if (currentLine < dialogueLines.Length)
         {
-            dialogueText.text = dialogueLines[currentLine];
+            DisplayLine(dialogueLines[currentLine]);
         }
         else
         {
             EndDialogue();
+        }
+    }
+
+    void DisplayLine(string line)
+    {
+        StopAllCoroutines(); // ✅ stop any ongoing typing
+        StartCoroutine(TypeLine(line));
+    }
+
+    IEnumerator TypeLine(string line)
+    {
+        dialogueText.text = "";
+        foreach (char c in line.ToCharArray())
+        {
+            dialogueText.text += c;
+            yield return new WaitForSecondsRealtime(typingSpeed);
+            // ✅ WaitForSecondsRealtime ensures typing works while Time.timeScale = 0
         }
     }
 

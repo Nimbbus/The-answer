@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,13 +13,27 @@ public class DialogueManager : MonoBehaviour
     public string[] dialogueLines;
     public int currentLine = 0;
 
+    [Header("Typing Effect")]
+    public float typingSpeed = 0.03f; // ✅ adjustable typing speed
+    private Coroutine typingCoroutine;
+
     private bool isDialogueActive = false;
 
     void Update()
     {
         if (isDialogueActive && Input.GetKeyDown(KeyCode.E))
         {
-            NextLine();
+            // ✅ If typing is still running, skip to full line instantly
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+                dialogueText.text = dialogueLines[currentLine];
+                typingCoroutine = null;
+            }
+            else
+            {
+                NextLine();
+            }
         }
     }
 
@@ -48,8 +63,22 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentLine < dialogueLines.Length)
         {
-            dialogueText.text = dialogueLines[currentLine];
+            if (typingCoroutine != null)
+                StopCoroutine(typingCoroutine);
+
+            typingCoroutine = StartCoroutine(TypeLine(dialogueLines[currentLine]));
         }
+    }
+
+    private IEnumerator TypeLine(string line)
+    {
+        dialogueText.text = "";
+        foreach (char c in line.ToCharArray())
+        {
+            dialogueText.text += c;
+            yield return new WaitForSecondsRealtime(typingSpeed);
+        }
+        typingCoroutine = null; // ✅ reset when finished
     }
 
     public void NextLine()
