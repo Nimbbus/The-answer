@@ -14,10 +14,16 @@ public class RegretAI : MonoBehaviour
 
     [Header("Timing")]
     public float attackCooldown = 2f;    // cooldown AFTER second attack
-    public float hitRecoveryTime = 1.5f; // recovery after getting hit
+    public float hitRecoveryTime = 1.0f; // recovery after getting hit (adjust in Inspector)
+
+    [Header("Weapon")]
+    public Collider weaponCollider; // assign boss weapon collider in Inspector
+    public int firstAttackDamage = 25;
+    public int secondAttackDamage = 40;
 
     private NavMeshAgent agent;
     private Animator animator;
+    private RegretBossHit hitScript;
 
     private bool isAttacking;
     private bool isDead;
@@ -29,6 +35,12 @@ public class RegretAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         agent.stoppingDistance = stopDistance;
+
+        if (weaponCollider != null)
+        {
+            hitScript = weaponCollider.GetComponent<RegretBossHit>();
+            weaponCollider.enabled = false; // keep disabled until attack frames
+        }
 
         // Regret always starts walking
         animator.SetBool("isWalking", true);
@@ -155,5 +167,40 @@ public class RegretAI : MonoBehaviour
 
         animator.SetTrigger("Die");
         animator.SetBool("isWalking", false);
+    }
+
+    // ✅ Animation Event methods
+    public void EnableFirstAttackCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = true;
+            if (hitScript != null)
+            {
+                hitScript.ResetHit(); // ensures only one hit per swing
+                hitScript.SetDamage(firstAttackDamage);
+            }
+        }
+    }
+
+    public void EnableSecondAttackCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = true;
+            if (hitScript != null)
+            {
+                hitScript.ResetHit(); // ensures only one hit per swing
+                hitScript.SetDamage(secondAttackDamage);
+            }
+        }
+    }
+
+    public void DisableWeaponCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false;
+        }
     }
 }
