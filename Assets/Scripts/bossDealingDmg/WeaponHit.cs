@@ -3,29 +3,29 @@
 public class WeaponHit : MonoBehaviour
 {
     public int damage = 10;
-    private bool hasHit = false; // ✅ prevents multiple hits per swing
+    // prevents multiple hits per swing
+    private bool hasHit = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Weapon collider triggered by: " + other.name);
+      
 
+        // only hit player and only once until reset
         if (!hasHit && other.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
+                // apply damage to player
                 playerHealth.TakeDamage(damage);
-                Debug.Log("Weapon hit player for " + damage + " damage. Remaining health: " + playerHealth.CurrentHealth);
-                hasHit = true; // ✅ block further hits until reset
+             
+                hasHit = true;
             }
-            else
-            {
-                Debug.LogWarning("PlayerHealth not found on: " + other.name);
-            }
+
         }
     }
 
-    // ✅ Called by RageAI when starting a new attack
+    // called to allow the weapon to hit again
     public void ResetHit()
     {
         hasHit = false;

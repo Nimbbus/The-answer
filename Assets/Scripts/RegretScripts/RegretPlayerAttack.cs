@@ -3,19 +3,20 @@ using UnityEngine;
 public class RegretPlayerAttack : MonoBehaviour
 {
     [Header("References")]
-    public Collider weaponCollider; // assign sword collider in Inspector
+    public Collider weaponCollider; // sword collider (assign in Inspector)
 
-    private RegretPlayerHit hitScript;
+    private RegretPlayerHit hitScript; // handles applying damage on hit
 
     void Start()
     {
+        // cache hit handler from collider
         if (weaponCollider != null)
         {
             hitScript = weaponCollider.GetComponent<RegretPlayerHit>();
         }
     }
 
-    // Light Attack (30 dmg)
+    // enable collider for light attack and set damage to 30
     public void EnableLightAttackCollider()
     {
         if (weaponCollider != null)
@@ -23,14 +24,13 @@ public class RegretPlayerAttack : MonoBehaviour
             weaponCollider.enabled = true;
             if (hitScript != null)
             {
-                hitScript.ResetHit();
-                hitScript.SetDamage(30);
+                hitScript.ResetHit();    // allow one hit this swing
+                hitScript.SetDamage(30); // light attack damage
             }
-            Debug.Log("Light attack collider enabled.");
         }
     }
 
-    // Heavy Attack (50 dmg)
+    // enable collider for heavy attack and set damage to 50
     public void EnableHeavyAttackCollider()
     {
         if (weaponCollider != null)
@@ -38,20 +38,18 @@ public class RegretPlayerAttack : MonoBehaviour
             weaponCollider.enabled = true;
             if (hitScript != null)
             {
-                hitScript.ResetHit();
-                hitScript.SetDamage(50);
+                hitScript.ResetHit();    // allow one hit this swing
+                hitScript.SetDamage(50); // heavy attack damage
             }
-            Debug.Log("Heavy attack collider enabled.");
         }
     }
 
-    // Shared disable method
+    // disable weapon collider after attack frames
     public void DisableWeaponCollider()
     {
         if (weaponCollider != null)
         {
             weaponCollider.enabled = false;
-            Debug.Log("Weapon collider disabled.");
         }
     }
 }

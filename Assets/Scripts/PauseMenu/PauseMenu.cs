@@ -4,24 +4,25 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel;
-    public bool isPaused = false;
+    public GameObject pausePanel; // pause UI panel
+    public bool isPaused = false; // whether game is paused
 
     void Update()
     {
-        // Toggle pause with Escape or P
+        // toggle pause on Escape or P
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
             TogglePause();
         }
 
-        // Optional: reset UI selection to avoid stale focus
+        // clear UI selection while paused to avoid stuck focus
         if (isPaused)
         {
             EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
+    // switch between paused and resumed states
     public void TogglePause()
     {
         if (isPaused)
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // enable pause UI and freeze time
     private void PauseGame()
     {
         isPaused = true;
@@ -41,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    // hide pause UI and resume time
     public void ResumeGame()
     {
         isPaused = false;
@@ -48,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    // go back to main menu (resumes time first)
     public void GoToMainMenu()
     {
         isPaused = false;
@@ -55,6 +59,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    // quit the application (ensure timeScale restored)
     public void QuitGame()
     {
         Time.timeScale = 1f;

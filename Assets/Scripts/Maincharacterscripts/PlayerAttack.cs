@@ -3,19 +3,20 @@
 public class PlayerAttack : MonoBehaviour
 {
     [Header("References")]
-    public Collider weaponCollider; // assign sword collider in Inspector
+    public Collider weaponCollider; // sword collider (assign in Inspector)
 
-    private PlayerWeaponHit hitScript;
+    private PlayerWeaponHit hitScript; // damage/hit handler on collider
 
     void Start()
     {
+        // cache the hit script from the collider
         if (weaponCollider != null)
         {
             hitScript = weaponCollider.GetComponent<PlayerWeaponHit>();
         }
     }
 
-    // ✅ Light Attack (20 dmg)
+    // enable collider for light attack and set damage to 20
     public void EnableLightAttackCollider()
     {
         if (weaponCollider != null)
@@ -23,14 +24,13 @@ public class PlayerAttack : MonoBehaviour
             weaponCollider.enabled = true;
             if (hitScript != null)
             {
-                hitScript.ResetHit();
-                hitScript.SetDamage(20);
+                hitScript.ResetHit();    // allow a new hit this swing
+                hitScript.SetDamage(20); // set light attack damage
             }
-            Debug.Log("Light attack collider enabled.");
         }
     }
 
-    // ✅ Heavy Attack (40 dmg)
+    // enable collider for heavy attack and set damage to 40
     public void EnableHeavyAttackCollider()
     {
         if (weaponCollider != null)
@@ -38,20 +38,18 @@ public class PlayerAttack : MonoBehaviour
             weaponCollider.enabled = true;
             if (hitScript != null)
             {
-                hitScript.ResetHit();
-                hitScript.SetDamage(40);
+                hitScript.ResetHit();    // allow a new hit this swing
+                hitScript.SetDamage(40); // set heavy attack damage
             }
-            Debug.Log("Heavy attack collider enabled.");
         }
     }
 
-    // ✅ Shared disable method
+    // disable the weapon collider after attack frames
     public void DisableWeaponCollider()
     {
         if (weaponCollider != null)
         {
             weaponCollider.enabled = false;
-            Debug.Log("Weapon collider disabled.");
         }
     }
 }

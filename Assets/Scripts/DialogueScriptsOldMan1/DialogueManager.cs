@@ -6,24 +6,25 @@ using System.Collections;
 public class DialogueManager : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject dialoguePanel;
-    public TextMeshProUGUI dialogueText;
+    public GameObject dialoguePanel;           // UI panel to show dialogue
+    public TextMeshProUGUI dialogueText;       // text element for typing
 
     [Header("Dialogue Data")]
-    public string[] dialogueLines;
-    public int currentLine = 0;
+    public string[] dialogueLines;             // lines to display
+    public int currentLine = 0;                // index of current line
 
     [Header("Typing Effect")]
-    public float typingSpeed = 0.03f; // ✅ adjustable typing speed
-    private Coroutine typingCoroutine;
+    public float typingSpeed = 0.03f;          // delay between characters
+    private Coroutine typingCoroutine;         // active typing coroutine
 
-    private bool isDialogueActive = false;
+    private bool isDialogueActive = false;     // whether dialogue is open
 
     void Update()
     {
+        // advance or skip typing when player presses E
         if (isDialogueActive && Input.GetKeyDown(KeyCode.E))
         {
-            // ✅ If typing is still running, skip to full line instantly
+            // skip typing and show full line if typing
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
@@ -39,9 +40,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string[] lines)
     {
+        // validate inputs
         if (dialoguePanel == null || dialogueText == null || lines == null || lines.Length == 0)
         {
-            Debug.LogWarning("DialogueManager setup is incomplete.");
             return;
         }
 
@@ -52,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         currentLine = 0;
         ShowLine();
 
-        // ✅ Pause gameplay unless in Old Man scene
+        // pause game except for OldManMeeting scene
         if (SceneManager.GetActiveScene().name != "OldManMeeting")
         {
             Time.timeScale = 0f;
@@ -61,6 +62,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowLine()
     {
+        // start typing current line
         if (currentLine < dialogueLines.Length)
         {
             if (typingCoroutine != null)
@@ -72,17 +74,19 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeLine(string line)
     {
+        // type text char-by-char (uses realtime so it works while paused)
         dialogueText.text = "";
         foreach (char c in line.ToCharArray())
         {
             dialogueText.text += c;
             yield return new WaitForSecondsRealtime(typingSpeed);
         }
-        typingCoroutine = null; // ✅ reset when finished
+        typingCoroutine = null; // typing finished
     }
 
     public void NextLine()
     {
+        // move to next line or end dialogue
         currentLine++;
         if (currentLine < dialogueLines.Length)
         {
@@ -96,6 +100,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        // close UI and resume game if needed
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
 

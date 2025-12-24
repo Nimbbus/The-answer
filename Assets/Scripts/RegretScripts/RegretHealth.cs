@@ -6,29 +6,30 @@ using System.Collections;
 public class RegretHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public float maxHealth = 700f;
-    public float currentHealth;
+    public float maxHealth = 700f;           // max HP
+    public float currentHealth;              // current HP
 
     [Header("UI")]
-    public Slider bossHealthSlider;
+    public Slider bossHealthSlider;          // health bar slider
 
     [Header("AI Control")]
-    public RegretAI bossAI; // assign your AI script in Inspector
+    public RegretAI bossAI;                  // boss AI reference
 
     [Header("Final Words Dialogue")]
     [TextArea]
-    public string bossFinalWords; // write the boss's last words in Inspector
-    public GameObject dialoguePanel; // assign your existing DialoguePanel GameObject
-    public TextMeshProUGUI dialogueText; // assign the TMP text component inside the panel
+    public string bossFinalWords;            // final dialogue text
+    public GameObject dialoguePanel;         // dialogue UI panel
+    public TextMeshProUGUI dialogueText;     // dialogue text element
 
     [Header("Scene Objects")]
-    public GameObject blockingRock; // assign rock prefab in Inspector
+    public GameObject blockingRock;          // rock to remove after dialogue
 
-    private bool isDead = false;
-    private bool waitingForInput = false;
+    private bool isDead = false;             // death flag
+    private bool waitingForInput = false;    // waiting for player input
 
     void Start()
     {
+        // initialize health and UI
         currentHealth = maxHealth;
 
         if (bossHealthSlider != null)
@@ -36,14 +37,11 @@ public class RegretHealth : MonoBehaviour
             bossHealthSlider.maxValue = maxHealth;
             bossHealthSlider.value = currentHealth;
         }
-        else
-        {
-            Debug.LogWarning("BossHealthSlider not assigned in RegretHealth.");
-        }
     }
 
     void Update()
     {
+        // resume when player confirms final dialogue
         if (waitingForInput && Input.GetKeyDown(KeyCode.E))
         {
             ResumeGameAfterDialogue();
@@ -52,27 +50,28 @@ public class RegretHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (isDead) return;
+        if (isDead) return; // ignore after death
 
+        // apply and clamp damage
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        // update UI if present
         if (bossHealthSlider != null)
         {
             bossHealthSlider.value = currentHealth;
         }
 
-        Debug.Log("Regret boss took " + amount + " damage. Current health: " + currentHealth);
-
+        // notify AI about being hit
         if (bossAI != null)
         {
             bossAI.OnHit();
         }
 
+        // handle death
         if (currentHealth <= 0)
         {
             isDead = true;
-            Debug.Log("Regret boss died!");
 
             if (bossAI != null)
             {
@@ -85,6 +84,7 @@ public class RegretHealth : MonoBehaviour
 
     IEnumerator ShowFinalWords()
     {
+        // short delay before showing final text
         yield return new WaitForSeconds(2f);
 
         if (dialoguePanel != null && dialogueText != null)
@@ -92,17 +92,15 @@ public class RegretHealth : MonoBehaviour
             dialoguePanel.SetActive(true);
             dialogueText.text = bossFinalWords;
 
-            // ✅ Freeze game
+            // pause gameplay and wait for player input
             Time.timeScale = 0f;
             waitingForInput = true;
-
-            Debug.Log("Final words displayed. Waiting for player to press E...");
         }
     }
 
     void ResumeGameAfterDialogue()
     {
-        // ✅ Unfreeze game
+        // unpause and clean up
         Time.timeScale = 1f;
         waitingForInput = false;
 
@@ -111,10 +109,10 @@ public class RegretHealth : MonoBehaviour
             dialoguePanel.SetActive(false);
         }
 
+        // remove blocking rock if assigned
         if (blockingRock != null)
         {
             Destroy(blockingRock);
-            Debug.Log("Blocking rock removed after boss dialogue.");
         }
     }
 }

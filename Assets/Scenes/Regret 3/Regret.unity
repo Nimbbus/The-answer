@@ -10932,8 +10932,12 @@ MonoBehaviour:
   attackCooldown: 5
   hitRecoveryTime: 1
   weaponCollider: {fileID: 1644524308}
+  swordTransform: {fileID: 1644524310}
   firstAttackDamage: 30
   secondAttackDamage: 40
+  firstAttackEffectPrefab: {fileID: 2478174834034471687, guid: 2cd832a208f366d4a98a818a22bbe321, type: 3}
+  secondAttackEffectPrefab: {fileID: 502194641888514723, guid: 6996c043943b33d40a0ffc8158d83cad, type: 3}
+  effectLifetime: 2
 --- !u!114 &653551474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11249,16 +11253,13 @@ MonoBehaviour:
     already clouded, consumed with the thought of losing him. Desperate to preserve
     our bond, I convinced myself the newcomer was a threat\u2026 and so I plotted
     his death."
-  - "Regret: My plan was simple: poison him in his sleep, so it would appear he had
-    died naturally by morning. And so I carried it out. But in my blindness, I overlooked
-    one detail the bottle. My closest friend found it when he came to my home, seeking
-    to share his grief over the friend\u2019s death."
-  - "Regret: The one closest to me the friend I sought to protect looked at me in
+  - "Regret: My plan was simple: to poison him as he slept, so by morning it would
+    seem he had died naturally. And I carried it out. Yet in my blindness, I overlooked
+    a single detail, the bottle. My closest friend discovered it when he came to
+    my home, hoping to share his grief over our companion\u2019s death."
+  - "Regret: The one closest to me, the friend I sought to protect looked at me in
     disbelief. \u2018What for? Why would you do this? He was nothing but kind to
     us. He fought beside us, shared our burdens\u2026 so why?"
-  - 'Regret: So I had no choice but to confess my sin which is I was afraid of losing
-    our friendship I didnt have friedns other than you and you seemed to be fond
-    of him so I decided to end it before it happens..'
   - "Regret: I had no choice but to confess my sin. I was terrified of losing our
     bond you were my only friend. When I saw how fond you were of him, I let fear
     consume me. So I chose to end it\u2026 before it could happen."
@@ -11269,7 +11270,7 @@ MonoBehaviour:
     by regret and guilt. And if you seek your Answer, you must face me\u2026 and
     prove yourself in battle"
   - 'Traveler: I have proved it many times before whats another time!'
-  typingSpeed: 0.03
+  typingSpeed: 0.001
 --- !u!65 &699685266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11652,7 +11653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -457, y: 204}
+  m_AnchoredPosition: {x: -265, y: 219}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822870414
@@ -11719,6 +11720,14 @@ PrefabInstance:
       value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 2151595483926081573, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: heavyAttackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fb7aa90709f5a34a8998dd3bf91cab1, type: 3}
+    - target: {fileID: 2151595483926081573, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: lightAttackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd85276e53ed4564cb043dda757c7b77, type: 3}
+    - target: {fileID: 2151595483926081573, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
       propertyPath: heavyAttackCooldown
       value: 2.2
       objectReference: {fileID: 0}
@@ -11733,6 +11742,22 @@ PrefabInstance:
     - target: {fileID: 2151595483926081573, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
       propertyPath: lightAttackLockDuration
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 1fabde84d4921b940bd7f8462f4eeb79, type: 2}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7008546209036079246, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
       propertyPath: m_Name
@@ -14165,6 +14190,134 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1597744383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1597744385}
+  - component: {fileID: 1597744384}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1597744384
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597744383}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1fabde84d4921b940bd7f8462f4eeb79, type: 2}
+  m_audioClip: {fileID: 8300000, guid: f32e73509a140b14f984aa8f065e7f14, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1597744385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597744383}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 574.4807, y: 170.03052, z: -506.17383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1608921160
 GameObject:
   m_ObjectHideFlags: 0
@@ -14557,6 +14710,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71e1e81ee345054aa449c7bba0eee04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1644524310 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9175088765034030054, guid: 5a2e3053881d475408bd8277724828fc, type: 3}
+  m_PrefabInstance: {fileID: 1683198546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1665465695
 GameObject:
   m_ObjectHideFlags: 0
@@ -14591,7 +14749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -432, y: 220}
+  m_AnchoredPosition: {x: -402, y: 206}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665465697
@@ -14778,6 +14936,42 @@ PrefabInstance:
     - target: {fileID: 120886501514424059, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2828368550984280677, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 2828368550984280677, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -114
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441501912306530735, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490526131147363188, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: typingSpeed
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243539730319749533, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243539730319749533, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415447620988329394, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415447620988329394, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415447620988329394, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 6635736720942752192, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
       propertyPath: m_Name
@@ -15317,10 +15511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -15497,6 +15691,18 @@ PrefabInstance:
     - target: {fileID: 3378595418874301349, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080797230118988735, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080797230118988735, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080797230118988735, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 8799859852163718808, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
       propertyPath: m_Name
@@ -16835,3 +17041,4 @@ SceneRoots:
   - {fileID: 1307044167}
   - {fileID: 1362625359}
   - {fileID: 1269472372}
+  - {fileID: 1597744385}

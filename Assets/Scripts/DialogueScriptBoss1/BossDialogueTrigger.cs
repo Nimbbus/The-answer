@@ -4,17 +4,18 @@ using System.Collections;
 
 public class BossDialogueTrigger : MonoBehaviour
 {
-    public GameObject dialoguePanel;
-    public string[] dialogueLines;
-    public TextMeshProUGUI dialogueText;
-    public float typingSpeed = 0.03f; // ✅ adjustable typing speed
+    public GameObject dialoguePanel;            // panel that shows dialogue UI
+    public string[] dialogueLines;              // lines to display
+    public TextMeshProUGUI dialogueText;        // UI text element
+    public float typingSpeed = 0.03f;           // time between typed characters
 
-    private int currentLine = 0;
-    private bool isDialogueActive = false;
-    private bool hasPlayed = false;
+    private int currentLine = 0;                // current line index
+    private bool isDialogueActive = false;      // is dialogue open
+    private bool hasPlayed = false;             // prevent retriggering
 
     void OnTriggerEnter(Collider other)
     {
+        // start when player enters trigger
         if (other.CompareTag("Player") && !isDialogueActive && !hasPlayed)
         {
             StartDialogue();
@@ -23,6 +24,7 @@ public class BossDialogueTrigger : MonoBehaviour
 
     void Update()
     {
+        // advance line on E while dialogue is active
         if (isDialogueActive && Input.GetKeyDown(KeyCode.E))
         {
             NextLine();
@@ -31,8 +33,9 @@ public class BossDialogueTrigger : MonoBehaviour
 
     void StartDialogue()
     {
+        // open UI, pause game, begin first line
         isDialogueActive = true;
-        hasPlayed = true; // ✅ Prevent retrigger
+        hasPlayed = true; // only once
         dialoguePanel.SetActive(true);
         Time.timeScale = 0f;
 
@@ -42,6 +45,7 @@ public class BossDialogueTrigger : MonoBehaviour
 
     void NextLine()
     {
+        // go to next line or end
         currentLine++;
         if (currentLine < dialogueLines.Length)
         {
@@ -55,23 +59,25 @@ public class BossDialogueTrigger : MonoBehaviour
 
     void DisplayLine(string line)
     {
-        StopAllCoroutines(); // ✅ stop any ongoing typing
+        // stop previous typing and start new one
+        StopAllCoroutines();
         StartCoroutine(TypeLine(line));
     }
 
     IEnumerator TypeLine(string line)
     {
+        // type text character-by-character (works while timeScale = 0)
         dialogueText.text = "";
         foreach (char c in line.ToCharArray())
         {
             dialogueText.text += c;
             yield return new WaitForSecondsRealtime(typingSpeed);
-            // ✅ WaitForSecondsRealtime ensures typing works while Time.timeScale = 0
         }
     }
 
     void EndDialogue()
     {
+        // close UI and resume game
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
         Time.timeScale = 1f;

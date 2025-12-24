@@ -4677,6 +4677,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitGame
       objectReference: {fileID: 0}
+    - target: {fileID: 5080797230118988735, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080797230118988735, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080797230118988735, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
+      objectReference: {fileID: 0}
     - target: {fileID: 8394359060367312436, guid: 77b27be2194cd0b448dba72a8751e342, type: 3}
       propertyPath: isPaused
       value: 0
@@ -9852,6 +9864,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8829451551789304537, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
   m_PrefabInstance: {fileID: 152249916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &993877847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 993877849}
+  - component: {fileID: 993877848}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &993877848
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993877847}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1fabde84d4921b940bd7f8462f4eeb79, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c01d2512e87fef54499bcf9bfc36fab7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &993877849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993877847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 574.4807, y: 170.03052, z: -506.17383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &995734830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19347,6 +19487,9 @@ MonoBehaviour:
   attackRange: 3
   attackCooldown: 1
   rotationSpeed: 5
+  attackEffectPrefab: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+  effectSpawnPoint: {fileID: 214643644}
+  effectLifetime: 2
 --- !u!195 &2079644742
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -20154,6 +20297,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1651805569315564658, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -245
+      objectReference: {fileID: 0}
     - target: {fileID: 1755166860594041687, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -20165,6 +20312,38 @@ PrefabInstance:
     - target: {fileID: 4690553180434437917, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238385968385184265, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631938512308974921, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -414
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631938512308974921, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 208
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178047221845188246, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178047221845188246, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178047221845188246, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730623980069361676, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -284
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730623980069361676, guid: 57c6d600c079efa4baa14b87631d4b87, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20347,6 +20526,10 @@ PrefabInstance:
       value: BossDialogueTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: typingSpeed
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 8182674466041131378}
@@ -20354,6 +20537,59 @@ PrefabInstance:
       propertyPath: dialoguePanel
       value: 
       objectReference: {fileID: 317881958297796680}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[2]
+      value: "Rage: I am one of your ancestors\u2026 they call me Rage. Word has
+        reached me that you seek The Answer."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[4]
+      value: "Rage: First, allow me to share my tale\u2026 from the days when I still
+        walked among the living."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[5]
+      value: 'Rage: I was born in an age when poverty was all the world had ever
+        known. Few remembered the taste of real food, for it was so scarce that survival
+        drove us to eat insects just to endure another day'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[6]
+      value: 'Rage: I was raised in what I believed to be a loving family. From the
+        moment I was born, we were taught that all we truly had was each other and
+        that no matter the hardship, we would always stand together, backs unbroken.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[7]
+      value: 'Rage: But one day, my mother heard whispers of a king who claimed dominion
+        over the world. He promised wealth and happiness to any parent willing to
+        surrender their child condemning them to toil as servants within his grand
+        mansion.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[8]
+      value: "Rage: And for the first time since I opened my eyes to this world,
+        I saw hope flicker within my mother\u2019s gaze. She looked at me steady,
+        unflinching and whispered with cruel certainty: \u2018At last\u2026 at last,
+        you will have a use.\u2019"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[9]
+      value: 'Rage: Her words did not wound me they ignited me. I was consumed by
+        fury. Fury at a world so barren it could not sustain its own people. Fury
+        at the king who tore families apart and twisted desperation into his power.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[10]
+      value: "Rage: Yet the one I despised most\u2026 was myself. For had I been
+        stronger, I could have torn down the king\u2019s kingdom and freed the millions
+        he kept in chains."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701291283526916286, guid: 01f93c2c3cd4c7d48beceb9ddd315130, type: 3}
+      propertyPath: dialogueLines.Array.data[11]
+      value: "Rage: And now, if you truly seek The Answer, you must defeat me\u2026
+        and endure the fury of a thousand years!"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48853,6 +49089,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2151595483926081573, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: heavyAttackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fb7aa90709f5a34a8998dd3bf91cab1, type: 3}
+    - target: {fileID: 2151595483926081573, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: lightAttackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd85276e53ed4564cb043dda757c7b77, type: 3}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 1fabde84d4921b940bd7f8462f4eeb79, type: 2}
+    - target: {fileID: 3417686607866954340, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7008546209036079246, guid: 52d774cfbbfd80e4ba780e965f57a25f, type: 3}
       propertyPath: m_Name
       value: Ch05_nonPBR
@@ -49001,6 +49261,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2828368550984280677, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 417
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441501912306530735, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490526131147363188, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: typingSpeed
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243539730319749533, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243539730319749533, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 174
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415447620988329394, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415447620988329394, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415447620988329394, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
+      objectReference: {fileID: 0}
     - target: {fileID: 6635736720942752192, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
@@ -49033,3 +49325,4 @@ SceneRoots:
   - {fileID: 1469175864}
   - {fileID: 1198612727669237130}
   - {fileID: 1961081301}
+  - {fileID: 993877849}

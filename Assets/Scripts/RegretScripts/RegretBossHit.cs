@@ -17,7 +17,7 @@ public class RegretBossHit : MonoBehaviour
             {
                 playerHealth.TakeDamage(damage);
                 Debug.Log("Boss hit player for " + damage + " damage.");
-                hasHit = true; // ✅ prevents multiple hits until reset
+                hasHit = true; //  prevents multiple hits until reset
             }
         }
     }

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
+    path: Assets/Scenes/Main menu/MainMenu.unity
+    guid: 653b89a441c2f04479b9d8ac9951777a
+  - enabled: 1
     path: Assets/Scenes/oldManMeeting 1/OldManMeeting.unity
     guid: 054587aebf72e2f43bea2c9be6233a69
   - enabled: 1
@@ -23,7 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/oldManMeeting 2/OldManMeetingFinal.unity
     guid: 596c2efa5819cf94b9f775e42cca1a9f
-  - enabled: 1
-    path: Assets/Scenes/Main menu/MainMenu.unity
-    guid: 653b89a441c2f04479b9d8ac9951777a
   m_configObjects: {}

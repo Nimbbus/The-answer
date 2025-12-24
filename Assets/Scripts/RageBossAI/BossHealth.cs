@@ -1,39 +1,41 @@
 ﻿using UnityEngine;
-using UnityEngine.AI; // Needed if boss uses NavMeshAgent
-using System.Collections; // Needed for coroutines
+using UnityEngine.AI; // NavMesh support
+using System.Collections; // coroutines
 
 public class BossHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int maxHealth = 200;
-    public int CurrentHealth { get; private set; }
+    public int maxHealth = 200; // max HP
+    public int CurrentHealth { get; private set; } // current HP
 
-    private Animator animator;
-    private bool isDead = false;
+    private Animator animator; // animator reference
+    private bool isDead = false; // death flag
 
     [Header("Dialogue Settings")]
     [Tooltip("Lines of dialogue the boss will speak after dying.")]
-    public string[] bossDeathDialogue; // assign these lines in the Inspector
+    public string[] bossDeathDialogue; // death lines
 
     [Header("Rock Settings")]
     [Tooltip("Rocks blocking the portal that should disappear when boss dies.")]
-    public GameObject[] blockingRocks; // assign both rocks in Inspector
+    public GameObject[] blockingRocks; // rocks to remove on death
 
     void Start()
     {
+        // initialize health and cache animator
         CurrentHealth = maxHealth;
         animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // Prevent damage after death
+        if (isDead) return; // ignore after death
 
+        // apply damage
         CurrentHealth -= damage;
-        Debug.Log("Boss took " + damage + " damage. Current health: " + CurrentHealth);
 
         if (CurrentHealth > 0)
         {
+            // play hit animation
             if (animator != null)
             {
                 animator.SetTrigger("GotHit");
@@ -41,40 +43,41 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
+            // handle death
             Die();
         }
     }
 
     private void Die()
     {
+        // mark dead and play death animation
         isDead = true;
-        Debug.Log("Boss died!");
 
         if (animator != null)
         {
             animator.SetTrigger("Die");
         }
 
-        // Disable AI logic
+        // disable AI behavior
         RageAI ai = GetComponent<RageAI>();
         if (ai != null) ai.enabled = false;
 
+        // disable NavMeshAgent
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         if (agent != null) agent.enabled = false;
 
-        // Disable combat collider
+        // disable collider
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
-        // Trigger dialogue with delay
+        // start post-death sequences
         StartCoroutine(ShowDialogueAfterDelay(3f));
-
-        // ✅ Delay rock removal by 3 seconds
         StartCoroutine(RemoveRocksAfterDelay(4f));
     }
 
     private IEnumerator ShowDialogueAfterDelay(float delay)
     {
+        // wait then start dialogue via DialogueManager
         yield return new WaitForSeconds(delay);
 
         DialogueManager dm = FindObjectOfType<DialogueManager>();
@@ -86,12 +89,14 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator RemoveRocksAfterDelay(float delay)
     {
+        // wait then remove blocking rocks
         yield return new WaitForSeconds(delay);
         RemoveBlockingRocks();
     }
 
     private void RemoveBlockingRocks()
     {
+        // disable each assigned rock
         if (blockingRocks != null && blockingRocks.Length > 0)
         {
             foreach (GameObject rock in blockingRocks)
@@ -101,7 +106,6 @@ public class BossHealth : MonoBehaviour
                     rock.SetActive(false);
                 }
             }
-            Debug.Log("Blocking rocks removed!");
         }
     }
 }

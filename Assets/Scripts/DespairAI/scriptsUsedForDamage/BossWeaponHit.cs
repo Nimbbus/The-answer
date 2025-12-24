@@ -3,67 +3,60 @@
 public class BossWeaponHitDespair : MonoBehaviour
 {
     [Header("Damage Settings")]
-    [SerializeField] private int damage = 40;
-    [SerializeField] private float hitCooldown = 0.5f;
+    [SerializeField] private int damage = 40;         // damage applied to player
+    [SerializeField] private float hitCooldown = 0.5f; // min time between hits
 
-    private float lastHitTime = -999f;
-    private Collider weaponCollider;
+    private float lastHitTime = -999f; // time of last applied hit
+    private Collider weaponCollider;   // collider used for hit detection
 
     void Awake()
     {
+        // cache collider, make it a trigger and start disabled
         weaponCollider = GetComponent<Collider>();
         if (weaponCollider != null)
         {
             weaponCollider.isTrigger = true;
             weaponCollider.enabled = false;
-            Debug.Log($"{gameObject.name}: Weapon collider initialized and disabled.");
-        }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name}: No collider found on weapon.");
         }
     }
 
+    // enable collider during attack frames and reset hit timer
     public void EnableWeaponCollider()
     {
         if (weaponCollider != null)
         {
             weaponCollider.enabled = true;
             lastHitTime = -999f;
-            Debug.Log($"{gameObject.name}: Weapon collider enabled.");
         }
     }
 
+    // disable collider outside attack frames
     public void DisableWeaponCollider()
     {
         if (weaponCollider != null)
         {
             weaponCollider.enabled = false;
-            Debug.Log($"{gameObject.name}: Weapon collider disabled.");
         }
     }
 
     void OnTriggerStay(Collider other)
     {
+        // only proceed when collider active and hitting the player
         if (!weaponCollider.enabled) return;
         if (!other.CompareTag("Player")) return;
 
+        // enforce cooldown between hits
         if (Time.time - lastHitTime < hitCooldown)
         {
-            Debug.Log($"{gameObject.name}: Skipped hit — cooldown not expired.");
             return;
         }
 
+        // apply damage if target has health component
         DespairSceneHealth playerHealth = other.GetComponent<DespairSceneHealth>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damage);
             lastHitTime = Time.time;
-            Debug.Log($"{gameObject.name}: Boss hit player for {damage} damage. Remaining health: {playerHealth.currentHealth}");
-        }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name}: Player has no DespairSceneHealth component!");
         }
     }
 }

@@ -22,7 +22,7 @@ public class CursorManager : MonoBehaviour
     {
         string scene = SceneManager.GetActiveScene().name;
 
-        // ✅ Always visible in MainMenu
+        //  Always visible in MainMenu
         if (scene == "MainMenu")
         {
             Cursor.lockState = CursorLockMode.None;
@@ -30,7 +30,7 @@ public class CursorManager : MonoBehaviour
             return;
         }
 
-        // ✅ Visible if paused
+        //  Visible if paused
         PauseMenu pauseMenu = FindObjectOfType<PauseMenu>();
         if (pauseMenu != null && pauseMenu.isPaused)
         {
@@ -39,7 +39,7 @@ public class CursorManager : MonoBehaviour
             return;
         }
 
-        // ✅ Default gameplay: cursor hidden
+        //  Default gameplay: cursor hidden
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

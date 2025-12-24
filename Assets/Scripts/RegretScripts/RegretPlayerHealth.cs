@@ -6,22 +6,23 @@ using System.Collections;
 public class RegretPlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public float maxHealth = 200f;
-    public float currentHealth;
+    public float maxHealth = 200f;     // maximum health
+    public float currentHealth;        // current health
 
     [Header("UI")]
-    public Slider playerHealthSlider;
+    public Slider playerHealthSlider;  // health bar slider
 
     [Header("Animation")]
-    public Animator playerAnimator; // assign in Inspector
+    public Animator playerAnimator;    // animator reference
 
     [Header("Control")]
-    public MonoBehaviour movementScript; // assign your player movement script here
+    public MonoBehaviour movementScript; // movement script to disable on death
 
-    private bool isDead = false;
+    private bool isDead = false;       // death flag
 
     void Start()
     {
+        // initialize health and UI
         currentHealth = maxHealth;
 
         if (playerHealthSlider != null)
@@ -38,45 +39,41 @@ public class RegretPlayerHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (isDead) return;
+        if (isDead) return; // ignore damage when dead
 
+        // apply damage and clamp value
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        // update UI if present
         if (playerHealthSlider != null)
-        {
             playerHealthSlider.value = currentHealth;
-        }
 
-        Debug.Log("Regret player took " + amount + " damage. Current health: " + currentHealth);
-
+        // play hit animation
         if (playerAnimator != null)
-        {
             playerAnimator.SetTrigger("GotHit");
-        }
 
+        // trigger death when health is depleted
         if (currentHealth <= 0)
         {
             isDead = true;
-            Debug.Log("Regret player died!");
 
             if (playerAnimator != null)
             {
-                // ✅ Stop all animation states that could override death
+                // stop other animation states that may override death
                 playerAnimator.SetBool("isWalking", false);
                 playerAnimator.SetBool("LightAttack", false);
                 playerAnimator.SetBool("HeavyAttack", false);
                 playerAnimator.SetBool("Dodge", false);
                 playerAnimator.ResetTrigger("GotHit");
 
-                // ✅ Trigger death animation
+                // play death animation
                 playerAnimator.SetTrigger("Die");
             }
 
+            // disable movement controls
             if (movementScript != null)
-            {
                 movementScript.enabled = false;
-            }
 
             StartCoroutine(DeathSequence());
         }
@@ -84,9 +81,10 @@ public class RegretPlayerHealth : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
-        yield return null; // wait one frame so Animator can process the trigger
+        // wait one frame for animator to process the trigger
+        yield return null;
 
-        // Wait until Animator enters the Dying state
+        // wait until animator enters the "Dying" state
         AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
         while (!stateInfo.IsName("Dying"))
         {
@@ -94,12 +92,11 @@ public class RegretPlayerHealth : MonoBehaviour
             stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
         }
 
-        Debug.Log("Entered Dying state. Waiting for animation to finish...");
-
-        // Wait for the full length of the Dying animation
+        // wait for the dying animation to finish
         float deathAnimLength = stateInfo.length;
         yield return new WaitForSeconds(deathAnimLength);
 
+        // return to main menu
         SceneManager.LoadScene("MainMenu");
     }
 }

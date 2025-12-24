@@ -1,63 +1,61 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement; // Needed for scene loading
+using UnityEngine.SceneManagement; // scene loading
 
+// Manages player health, damage and death
 public class PlayerHealth : MonoBehaviour
 {
-    public static bool IsPlayerDead = false; // ✅ global flag
-    [Header("Health Settings")]
-    public int maxHealth = 100;
-    public int CurrentHealth { get; private set; }
+    public static bool IsPlayerDead = false; // global dead flag
 
-    private Animator animator;
-    private bool isDead = false;
+    [Header("Health Settings")]
+    public int maxHealth = 100; // maximum health
+    public int CurrentHealth { get; private set; } // current health
+
+    private Animator animator; // animator reference
+    private bool isDead = false; // local dead flag
 
     void Start()
     {
+        // initialize health and cache animator
         CurrentHealth = maxHealth;
         animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // Prevent damage after death
+        if (isDead) return; // ignore damage when dead
 
-        CurrentHealth -= damage;
-        Debug.Log("Player took " + damage + " damage. Current health: " + CurrentHealth);
+        CurrentHealth -= damage; // subtract damage
 
         if (CurrentHealth > 0)
         {
-            // ✅ Only play GotHit if still alive
+            // play hit animation if alive
             if (animator != null)
             {
                 animator.SetTrigger("GotHit");
-                Debug.Log("GotHit trigger set on Animator.");
             }
         }
         else
         {
-            // ✅ Health is 0 or less → Die
+            // health depleted -> die
             Die();
         }
     }
 
     private void Die()
     {
-        IsPlayerDead = true; // ✅ mark player as dead
-        Debug.Log("Player died!");
+        // mark death and play death animation
+        IsPlayerDead = true;
         isDead = true;
-        Debug.Log("Player died!");
 
         if (animator != null)
         {
-            animator.SetTrigger("Die"); // ✅ plays death animation
+            animator.SetTrigger("Die");
         }
-
-     
     }
 
-    // ✅ Called by an Animation Event at the END of the death animation
+    // Called by an animation event at the end of the death animation
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu"); // Replace with your actual menu scene name
+        SceneManager.LoadScene("MainMenu"); // load main menu scene
     }
 }

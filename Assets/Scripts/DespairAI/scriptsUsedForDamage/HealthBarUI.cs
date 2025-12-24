@@ -4,20 +4,21 @@ using UnityEngine.UI;
 public class HealthHUD : MonoBehaviour
 {
     [Header("References")]
-    public GameObject healthCanvas;          // Drag the whole Canvas here
-    public DespairSceneHealth playerHealth;  // Drag Player GameObject here
-    public DespairSceneHealth bossHealth;    // Drag Boss GameObject here
+    public GameObject healthCanvas;          // Canvas that contains health UI
+    public DespairSceneHealth playerHealth;  // Player health component
+    public DespairSceneHealth bossHealth;    // Boss health component
 
-    private Slider playerSlider;
-    private Slider bossSlider;
-    private Text playerText;
-    private Text bossText;
+    private Slider playerSlider; // player health slider
+    private Slider bossSlider;   // boss health slider
+    private Text playerText;     // player health text
+    private Text bossText;       // boss health text
 
     void Awake()
     {
+        // find slider objects under the canvas
         if (healthCanvas == null)
         {
-            Debug.LogError("HealthCanvas is not assigned.");
+            // no canvas assigned
             return;
         }
 
@@ -27,12 +28,14 @@ public class HealthHUD : MonoBehaviour
         if (playerSliderObj != null)
             playerSlider = playerSliderObj.GetComponent<Slider>();
         else
-            Debug.LogError("PlayerSlider not found under HealthCanvas.");
+            // player slider not found
+            playerSlider = null;
 
         if (bossSliderObj != null)
             bossSlider = bossSliderObj.GetComponent<Slider>();
         else
-            Debug.LogError("BossSlider not found under HealthCanvas.");
+            // boss slider not found
+            bossSlider = null;
 
         Transform playerTextObj = playerSliderObj?.Find("PlayerText");
         Transform bossTextObj = bossSliderObj?.Find("BossText");
@@ -40,16 +43,19 @@ public class HealthHUD : MonoBehaviour
         if (playerTextObj != null)
             playerText = playerTextObj.GetComponent<Text>();
         else
-            Debug.LogWarning("PlayerText not found under PlayerSlider.");
+            // player text not found
+            playerText = null;
 
         if (bossTextObj != null)
             bossText = bossTextObj.GetComponent<Text>();
         else
-            Debug.LogWarning("BossText not found under BossSlider.");
+            // boss text not found
+            bossText = null;
     }
 
     void Start()
     {
+        // initialize slider ranges and values
         if (playerHealth != null && playerSlider != null)
         {
             playerSlider.maxValue = playerHealth.maxHealth;
@@ -67,6 +73,7 @@ public class HealthHUD : MonoBehaviour
 
     void Update()
     {
+        // update slider values each frame
         if (playerHealth != null && playerSlider != null)
             playerSlider.value = playerHealth.currentHealth;
 
@@ -78,6 +85,7 @@ public class HealthHUD : MonoBehaviour
 
     void UpdateTexts()
     {
+        // update numeric health displays
         if (playerText != null && playerHealth != null)
             playerText.text = playerHealth.currentHealth + " / " + playerHealth.maxHealth;
 
