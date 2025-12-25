@@ -39,6 +39,15 @@ public class DespairSceneHealth : MonoBehaviour
         if (currentHealth <= 0f)
         {
             currentHealth = 0f;
+
+            // ✅ If this is the PLAYER, wait for death animation then reload
+            if (CompareTag("Player"))
+            {
+                StartCoroutine(RespawnAfterDeathAnimation());
+                return;
+            }
+
+            // ✅ If this is the BOSS, show death dialogue and freeze
             Die();
         }
         else
@@ -75,7 +84,6 @@ public class DespairSceneHealth : MonoBehaviour
         if (rockToHide != null)
             rockToHide.SetActive(false);
 
-        // Wait 1.5 seconds before showing dialogue and freezing
         StartCoroutine(ShowDialogueAfterDelay(1f));
     }
 
@@ -90,18 +98,36 @@ public class DespairSceneHealth : MonoBehaviour
                 dialogueText.text = bossDeathDialogue;
 
             dialogueActive = true;
-            Time.timeScale = 0f; // freeze game after delay
+            Time.timeScale = 0f;
         }
     }
 
     void Update()
     {
-        // Wait for player to press E to close dialogue and resume
         if (dialogueActive && Input.GetKeyDown(KeyCode.E))
         {
             dialoguePanel.SetActive(false);
             dialogueActive = false;
-            Time.timeScale = 1f; // resume game
+            Time.timeScale = 1f;
         }
+    }
+
+    // ✅ Coroutine waits for death animation before respawn
+    IEnumerator RespawnAfterDeathAnimation()
+    {
+        if (animator != null)
+        {
+            // Wait until the "Die" animation finishes
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return new WaitForSeconds(stateInfo.length);
+        }
+
+        Respawn();
+    }
+
+    void Respawn()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }

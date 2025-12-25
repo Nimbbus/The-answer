@@ -37,20 +37,6 @@ public class RageAI : MonoBehaviour
 
     void Update()
     {
-        // stop behavior if player is dead
-        if (PlayerHealth.IsPlayerDead)
-        {
-            if (agent.isOnNavMesh) agent.isStopped = true;
-
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isAttacking", false);
-
-            isAttacking = false;
-            if (weaponCollider != null) weaponCollider.enabled = false;
-
-            return;
-        }
-
         float distance = Vector3.Distance(transform.position, player.position);
 
         // chase when out of attack range
@@ -82,8 +68,6 @@ public class RageAI : MonoBehaviour
 
     private System.Collections.IEnumerator AttackRoutine()
     {
-        if (PlayerHealth.IsPlayerDead) yield break;
-
         isAttacking = true;
 
         // snap to face player at attack start
@@ -104,14 +88,6 @@ public class RageAI : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < attackCooldown)
         {
-            if (PlayerHealth.IsPlayerDead)
-            {
-                animator.SetBool("isAttacking", false);
-                isAttacking = false;
-                if (weaponCollider != null) weaponCollider.enabled = false;
-                yield break;
-            }
-
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -124,7 +100,7 @@ public class RageAI : MonoBehaviour
     // enable weapon collider to register hits
     public void EnableWeaponCollider()
     {
-        if (weaponCollider != null && !PlayerHealth.IsPlayerDead)
+        if (weaponCollider != null)
         {
             weaponCollider.enabled = true;
 

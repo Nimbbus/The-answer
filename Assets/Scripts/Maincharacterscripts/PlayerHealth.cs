@@ -51,11 +51,29 @@ public class PlayerHealth : MonoBehaviour
         {
             animator.SetTrigger("Die");
         }
+
+        // ✅ Disable movement and input scripts so player cannot move
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour script in scripts)
+        {
+            if (script != this) // keep PlayerHealth active
+                script.enabled = false;
+        }
+
+        // ✅ Optionally freeze rigidbody movement if physics is used
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
     }
 
     // Called by an animation event at the end of the death animation
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu"); // load main menu scene
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }

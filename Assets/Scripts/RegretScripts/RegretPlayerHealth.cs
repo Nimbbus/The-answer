@@ -97,6 +97,6 @@ public class RegretPlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(deathAnimLength);
 
         // return to main menu
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Regret");
     }
 }

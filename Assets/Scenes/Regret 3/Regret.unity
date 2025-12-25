@@ -14954,6 +14954,10 @@ PrefabInstance:
       value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 6243539730319749533, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 170
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243539730319749533, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -13
       objectReference: {fileID: 0}
@@ -14976,6 +14980,10 @@ PrefabInstance:
     - target: {fileID: 6635736720942752192, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635736720942752192, guid: 2ab8055f9595f5c4987f90cdeb737f44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
